@@ -46,7 +46,12 @@
                 @Html.DisplayFor(modelItem => item.NombreDueño)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.imagenDeCasa)
+                @* @Html.DisplayFor(modelItem => item.imagenDeCasa) *@
+                @{
+                    var base64 = Convert.ToBase64String(item.imagenDeCasa);
+                    var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+                }
+                <img class="imgCasa" src="@imgSrc" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.alquilada)

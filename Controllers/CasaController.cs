@@ -55,16 +55,29 @@ namespace integradora555.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CasaId,NombreDeCasa,domicilio,NombreDueño,imagenDeCasa,alquilada,eliminada")] Casa casa)
+        public async Task<IActionResult> Create([Bind("CasaId,NombreDeCasa,domicilio,NombreDueño,imagenDeCasa,alquilada,eliminada")] Casa casa, IFormFile imagenDeCasa)
         {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
-                _context.Add(casa);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (imagenDeCasa != null && imagenDeCasa.Length > 0)
+                {
+                    byte[]? Casaimagen = null;
+                    using (var fs1 = imagenDeCasa.OpenReadStream())
+                    using (var ms1 = new MemoryStream())
+                    {
+                        fs1.CopyTo(ms1);
+                        Casaimagen = ms1.ToArray();
+                    }
+                    casa.imagenDeCasa = Casaimagen;
+                }
+
+                    _context.Add(casa);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
             }
             return View(casa);
         }
+        
 
         // GET: Casa/Edit/5
         public async Task<IActionResult> Edit(int? id)
