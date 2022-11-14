@@ -46,10 +46,10 @@ namespace integradora555.Controllers
         }
 
         // GET: Alquiler/Create
-        public IActionResult Create()
+         public IActionResult Create()
         {
-            ViewData["casaId"] = new SelectList(_context.Casa, "CasaId", "NombreDeCasa");
-            ViewData["clienteId"] = new SelectList(_context.Cliente, "clienteId", "Apellido");
+            ViewData["clienteId"] = new SelectList(_context.Cliente, "clienteId", "Nombre", "Apellido");
+            ViewData["CasaId"] = new SelectList(_context.Casa.Where(x => x.alquilada == false && x.eliminada == false), "CasaId", "NombreDeCasa");
             return View();
         }
 
@@ -60,14 +60,19 @@ namespace integradora555.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AlquilerId,FechaDeAlquiler,clienteId,casaId,ClienteNombre,CasaNombre")] Alquiler alquiler)
         {
-            if (ModelState.IsValid)
+                 if (ModelState.IsValid)
             {
+                var Casa = (from a in _context.Casa where a.CasaId == alquiler.casaId select a).SingleOrDefault();
+                var Cliente = (from a in _context.Cliente where a.clienteId == alquiler.clienteId select a).SingleOrDefault();
+                alquiler.CasaNombre = Casa.NombreDeCasa;
+                alquiler.ClienteNombre = Cliente.Nombre + " " + Cliente.Apellido;
+                Casa.alquilada = true;
                 _context.Add(alquiler);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["casaId"] = new SelectList(_context.Casa, "CasaId", "NombreDeCasa", alquiler.casaId);
-            ViewData["clienteId"] = new SelectList(_context.Cliente, "clienteId", "Apellido", alquiler.clienteId);
+            ViewData["clienteId"] = new SelectList(_context.Cliente, "clienteId", "Nombre", "Apellido");
+            ViewData["CasaId"] = new SelectList(_context.Casa.Where(x => x.alquilada == false && x.eliminada == false), "CasaId", "NombreDeCasa");
             return View(alquiler);
         }
 
