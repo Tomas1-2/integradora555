@@ -15,4 +15,37 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-image: url(../css/imagenes/celeste.gif);
+}
+
+.centrar{
+  text-align: center;
+  margin: auto;
+  height: auto;
+  position: relative;
+  
+
+}
+
+.color{
+  color: white;
+  text-shadow: 2px 2px 1px rgb(0 0 0);
+}
+.color1{
+  color: #000;
+}
+
+.colorparacreates{
+  border: 2px solid rgb(26, 21, 19);
+  border-radius: 2,2,2,2;
+  background-color: antiquewhite;
+  opacity: 0.85;
+  box-sizing: border-box;
+}
+
+.espacio{
+  margin-top: 25px;}
+
+.espaciobajo{
+  margin-bottom: 25px;
 }
