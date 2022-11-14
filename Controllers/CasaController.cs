@@ -25,25 +25,7 @@ namespace integradora555.Controllers
                           View(await _context.Casa.ToListAsync()) :
                           Problem("Entity set 'integradora555Context.Casa'  is null.");
         }
-
-        // GET: Casa/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Casa == null)
-            {
-                return NotFound();
-            }
-
-            var casa = await _context.Casa
-                .FirstOrDefaultAsync(m => m.CasaId == id);
-            if (casa == null)
-            {
-                return NotFound();
-            }
-
-            return View(casa);
-        }
-
+       
         // GET: Casa/Create
         public IActionResult Create()
         {

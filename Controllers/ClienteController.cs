@@ -26,23 +26,6 @@ namespace integradora555.Controllers
                           Problem("Entity set 'integradora555Context.Cliente'  is null.");
         }
 
-        // GET: Cliente/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Cliente == null)
-            {
-                return NotFound();
-            }
-
-            var cliente = await _context.Cliente
-                .FirstOrDefaultAsync(m => m.clienteId == id);
-            if (cliente == null)
-            {
-                return NotFound();
-            }
-
-            return View(cliente);
-        }
 
         // GET: Cliente/Create
         public IActionResult Create()

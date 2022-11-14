@@ -1,10 +1,12 @@
 html {
   font-size: 14px;
+  color: white !important;
 }
 
 @media (min-width: 768px) {
   html {
     font-size: 16px;
+    color: white !important;
   }
 }
 
@@ -15,7 +17,9 @@ html {
 
 body {
   margin-bottom: 60px;
-  background-image: url(../css/imagenes/celeste.gif);
+  background-image: url(../css/imagenes/36yY.gif);
+  
+  
 }
 
 .centrar{
