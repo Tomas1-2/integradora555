@@ -1,0 +1,65 @@
+@model IEnumerable<integradora555.Models.Casa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreDeCasa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.domicilio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreDueño)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.imagenDeCasa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.alquilada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.eliminada)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreDeCasa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.domicilio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreDueño)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.imagenDeCasa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.alquilada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.eliminada)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CasaId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CasaId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CasaId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
