@@ -4,13 +4,11 @@
     ViewData["Title"] = "Create";
 }
 
-<h1 class="color">Crear</h1>
-
-<h4 class="color">Casa</h4>
+<h1 class="color text-center">CREAR NUEVA CASA</h1>
 <hr />
 <div class="row color1">
     <div class="col-md-4 centrar colorparacreates espacio">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group espacio">
                 <label asp-for="NombreDeCasa" class="control-label"></label>
@@ -29,7 +27,7 @@
             </div>
             <div class="form-group ">
                 <label asp-for="imagenDeCasa" class="control-label"></label>
-                <input asp-for="imagenDeCasa" class="form-control" />
+                <input asp-for="imagenDeCasa" class="form-control" type="file"/>
                 <span asp-validation-for="imagenDeCasa" class="text-danger"></span>
             </div>
             <div class="form-group espacio espaciobajo">

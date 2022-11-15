@@ -149,21 +149,30 @@ namespace integradora555.Controllers
         }
 
         // POST: Casa/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Casa == null)
-            {
-                return Problem("Entity set 'integradora555Context.Casa'  is null.");
+            var Casa = await _context.Casa.FindAsync(id);
+            if(Casa.alquilada == true){
+                return RedirectToAction(nameof(Index));
             }
-            var casa = await _context.Casa.FindAsync(id);
-            if (casa != null)
+            if (Casa != null)
             {
-                _context.Casa.Remove(casa);
+                var CasaAlquilada = (from a in _context.Alquiler where a.casaId == id select a).Count();
+                if(CasaAlquilada == 0)
+                {
+                    _context.Casa.Remove(Casa);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    Casa.eliminada = true;
+                    Casa.NombreDeCasa = Casa.NombreDeCasa + " (Eliminada)";
+                    _context.Update(Casa);
+                    await _context.SaveChangesAsync();
+                }
             }
-            
-            await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
