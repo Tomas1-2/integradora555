@@ -25,7 +25,7 @@ public class Casa
     [RegularExpression(@"[A-Z\s]*$", ErrorMessage = "SOLO SON ADMICIBLE MAYUSCULA Y ESPACIO ")]
     public string? NombreDueño { get; set; }
 
-    public Byte[]? imagenDeCasa { get; set; }
+    public byte[]? imagenDeCasa { get; set; }
 
     public bool alquilada { get; set; }
 

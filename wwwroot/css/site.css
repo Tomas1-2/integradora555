@@ -17,9 +17,10 @@ html {
 
 body {
   margin-bottom: 60px;
-  background-image: url(../css/imagenes/36yY.gif);
-  
-  
+
+  background-image: url(../css/imagenes/casas.jpg);
+  /* background-repeat: no-repeat !important; */
+  width: 100%;
 }
 
 .centrar{
@@ -32,11 +33,10 @@ body {
 }
 
 .color{
-  color: white;
-  text-shadow: 2px 2px 1px rgb(0 0 0);
+  color: var(--bs-white);
 }
 .color1{
-  color: #000;
+  color: var(--bs-white);
 }
 
 .colorparacreates{
@@ -48,8 +48,18 @@ body {
 }
 
 .espacio{
-  margin-top: 25px;}
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+
 
 .espaciobajo{
   margin-bottom: 25px;
+}
+
+
+.carousel-item {
+  height: 100vh;
+
 }

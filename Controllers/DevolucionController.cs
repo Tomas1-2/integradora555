@@ -48,7 +48,8 @@ namespace integradora555.Controllers
         // GET: Devolucion/Create
         public IActionResult Create()
         {
-            ViewData["CasaId"] = new SelectList(_context.Casa, "CasaId", "NombreDeCasa");
+            ViewData["CasaId"] = new SelectList(_context.Casa.Where(x => x.alquilada == true && x.eliminada == false), "CasaId", "NombreDeCasa");
+            ViewData["AlquilerId"] = new SelectList(_context.Alquiler, "AlquilerId", "casaId", "clienteId");
             ViewData["ClienteId"] = new SelectList(_context.Cliente, "clienteId", "Apellido");
             return View();
         }
@@ -62,12 +63,31 @@ namespace integradora555.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(devolucion);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    var ClienteID = (from a in _context.Alquiler where a.clienteId == devolucion.ClienteId && a.casaId == devolucion.CasaId select a).SingleOrDefault();
+                    if(ClienteID != null)
+                    {
+                        if(ClienteID.FechaDeAlquiler < devolucion.FechaDevolucion)
+                        {
+                            var Casa = (from a in _context.Casa where a.CasaId == devolucion.CasaId select a).SingleOrDefault();
+                            var Cliente = (from a in _context.Cliente where a.clienteId == devolucion.ClienteId select a).SingleOrDefault();
+                            devolucion.CasaNombre = Casa.NombreDeCasa;
+                            devolucion.ClienteNombre = Cliente.Nombre + " " + Cliente.Apellido;
+                            Casa.alquilada = false;
+                            _context.Add(devolucion);
+                            await _context.SaveChangesAsync();
+                            return RedirectToAction(nameof(Index));
+                        }
+                    }
+                }
+                catch (System.Exception ex){
+                    var error = ex;
+                }
             }
-            ViewData["CasaId"] = new SelectList(_context.Casa, "CasaId", "NombreDeCasa", devolucion.CasaId);
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "clienteId", "Apellido", devolucion.ClienteId);
+            ViewData["CasaId"] = new SelectList(_context.Casa.Where(x => x.alquilada == true && x.eliminada == false), "CasaId", "NombreDeCasa");
+            ViewData["AlquilerId"] = new SelectList(_context.Alquiler, "AlquilerId", "casaId", "clienteId");
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "clienteId", "Apellido");
             return View(devolucion);
         }
 
