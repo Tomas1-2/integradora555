@@ -1,0 +1,70 @@
+@model IEnumerable<integradora555.Models.Casa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<p>
+    <a class="btn btn-primary" asp-action="Create">Crear Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr class="color">
+            <th>
+                @Html.DisplayNameFor(model => model.NombreDeCasa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.domicilio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreDueño)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.imagenDeCasa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.alquilada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.eliminada)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="color">
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreDeCasa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.domicilio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreDueño)
+            </td>
+            <td>
+                @* @Html.DisplayFor(modelItem => item.imagenDeCasa) *@
+                @{
+                    var base64 = Convert.ToBase64String(item.imagenDeCasa);
+                    var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+                }
+                <img class="" src="@imgSrc" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.alquilada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.eliminada)
+            </td>
+            <td>
+            
+                <a class="btn btn-success espacio" asp-action="Edit" asp-route-id="@item.CasaId">Editar</a>
+                <a class="btn btn-danger" onclick="eliminarCasa(@item.CasaId);">Eliminar</a>
+
+                <a asp-action="Edit" asp-route-id="@item.CasaId">Edit</a> ||
+                <a asp-action="Delete" asp-route-id="@item.CasaId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

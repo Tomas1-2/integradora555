@@ -1,0 +1,64 @@
+@model IEnumerable<integradora555.Models.Devolucion>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Crear nuevo</a>
+</p>
+<table class="table color">
+    <thead>
+        <tr class="">
+            <th>
+                @Html.DisplayNameFor(model => model.FechaDevolucion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AlqulerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClienteNombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CasaNombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Casa)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDevolucion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlqulerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClienteNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CasaNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Casa.NombreDeCasa)
+            </td>
+            <td>
+                <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.DevolucionId">Editar</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.DevolucionId">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

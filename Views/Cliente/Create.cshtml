@@ -1,0 +1,44 @@
+@model integradora555.Models.Cliente
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<h1 class="color text-center">CREAR NUEVO CLIENTE</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4 colorparacreates espacio centrar espacio">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group centrar">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apellido" class="control-label"></label>
+                <input asp-for="Apellido" class="form-control" />
+                <span asp-validation-for="Apellido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dni" class="control-label"></label>
+                <input asp-for="Dni" class="form-control" />
+                <span asp-validation-for="Dni" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaDeNacimiento" class="control-label"></label>
+                <input asp-for="FechaDeNacimiento" class="form-control" />
+                <span asp-validation-for="FechaDeNacimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary espacio" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-light" asp-action="Index">volver a la lista</a>
+</div>
+

@@ -1,10 +1,12 @@
 html {
   font-size: 14px;
+  color: white !important;
 }
 
 @media (min-width: 768px) {
   html {
     font-size: 16px;
+    color: white !important;
   }
 }
 
@@ -15,4 +17,49 @@ html {
 
 body {
   margin-bottom: 60px;
+
+  background-image: url(../css/imagenes/casas.jpg);
+  /* background-repeat: no-repeat !important; */
+  width: 100%;
+}
+
+.centrar{
+  text-align: center;
+  margin: auto;
+  height: auto;
+  position: relative;
+  
+
+}
+
+.color{
+  color: var(--bs-white);
+}
+.color1{
+  color: var(--bs-white);
+}
+
+.colorparacreates{
+  border: 2px solid rgb(26, 21, 19);
+  border-radius: 2,2,2,2;
+  background-color: antiquewhite;
+  opacity: 0.85;
+  box-sizing: border-box;
+}
+
+.espacio{
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+
+
+.espaciobajo{
+  margin-bottom: 25px;
+}
+
+
+.carousel-item {
+  height: 100vh;
+
 }

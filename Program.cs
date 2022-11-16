@@ -1,4 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<integradora555Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("integradora555Context") ?? throw new InvalidOperationException("Connection string 'integradora555Context' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
