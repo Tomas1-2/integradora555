@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using integradora555.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace integradora555.Controllers
 {
+    [Authorize]
     public class AlquilerController : Controller
     {
         private readonly integradora555Context _context;
