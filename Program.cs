@@ -1,8 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
+using integradora555.Areas.Identity.Data;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<integradora555Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("integradora555Context") ?? throw new InvalidOperationException("Connection string 'integradora555Context' not found.")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<integradora555IdentityDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -21,6 +26,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
