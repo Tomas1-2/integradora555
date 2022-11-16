@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using integradora555.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace integradora555.Controllers
 {
+    [Authorize]
     public class CasaController : Controller
     {
         private readonly integradora555Context _context;
@@ -19,6 +21,7 @@ namespace integradora555.Controllers
         }
 
         // GET: Casa
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
               return _context.Casa != null ? 
