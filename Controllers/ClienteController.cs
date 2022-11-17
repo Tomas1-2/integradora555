@@ -121,8 +121,6 @@ namespace integradora555.Controllers
         }
 
         // POST: Cliente/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Cliente == null)
@@ -132,10 +130,12 @@ namespace integradora555.Controllers
             var cliente = await _context.Cliente.FindAsync(id);
             if (cliente != null)
             {
+                var clienteEnAlquiler = (from a in _context.Alquiler where a.clienteId == id select a).Count();
+                if (clienteEnAlquiler == 0)
                 _context.Cliente.Remove(cliente);
-            }
             
             await _context.SaveChangesAsync();
+            }
             return RedirectToAction(nameof(Index));
         }
 

@@ -37,8 +37,7 @@ body {
 }
 
 .colorparacreates{
-  border: 2px solid rgb(0, 0, 0);
-  border-radius: 2,2,2,2;
+  border: 2px solid rgb(0, 0, 0); 
   background-color: rgb(26, 25, 23);
   opacity: 0.85;
   box-sizing: border-box;
@@ -54,11 +53,38 @@ body {
 .espaciobajo{
   margin-bottom: 25px;
 }
+.video-tamaño{
+  align-items: center;
+  margin-left :auto; 
+  margin-right :auto;
+  text-align: center;
+  max-width: 840px;
+
+ }
+
+ .video{
+   width: 100%;
+   height: auto;
 
 
-.carousel{
-max-width: 100 vh;
-align-items: center;
+ }
 
+
+img{
+  width: 100px;
+  height: 100px; 
+  border: solid 3px white;
 }
 
+.table-dark{
+  background-color: rgb(38 36 36);
+  opacity: 0.95;
+}
+
+.alado{
+  float: left;
+}
+
+.colorinmo{
+  text-shadow: 2px 1px #558abb;;
+}

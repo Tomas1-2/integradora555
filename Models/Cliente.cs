@@ -8,21 +8,21 @@ public class Cliente
     public int clienteId { get; set; }
     [Display(Name ="Nombre")]
     [RegularExpression(@"[A-Z\s]*$",ErrorMessage = "SE ADMITEN SOLO MAYUSCULA Y ESPACIO")]
-    [MaxLength(25, ErrorMessage = "flaco cambia el nombre porque es muy largo")]
-    [Required(ErrorMessage = "inserte el nombre que le ah dado su madre")]
+    [MaxLength(25, ErrorMessage = "El nombre es muy largo")]
+    [Required(ErrorMessage = "inserte el nombre ")]
     public string Nombre { get; set; }
     [Display(Name ="Apellido")]
-    [RegularExpression(@"[A-Z]*$", ErrorMessage ="ESCRIBI EN MAYUSCULA Y SIN ESPACIO")]
-    [MaxLength(15,ErrorMessage ="flaco cambia el apellido porque tambien muy largo")]
-    [Required(ErrorMessage = "inserte el apellido que ah obtenido de su padre")]
+    [RegularExpression(@"[A-Z]*$", ErrorMessage ="ESCRIBIR EN MAYUSCULA Y SIN ESPACIO")]
+    [MaxLength(15,ErrorMessage ="El apellido muy largo")]
+    [Required(ErrorMessage = "inserte el apellido")]
     public string Apellido { get; set; }
     [Display(Name ="documento de identidad nacional")]
     [RegularExpression(@"[0-9\d]*$", ErrorMessage ="CARACTERES ADMITIDOS(0-1-2-3-4-5-6-7-8-9)")]
-    [Required(ErrorMessage = "inserte el numero de individuo que el gobierno le ah otorgado")]
+    [Required(ErrorMessage = "inserte el numero de DNI")]
     public int Dni { get; set; }
-    [Display(Name = "dia en la que llego al mundo a sufrir")]
+    [Display(Name = "Fecha")]
     [DataType(DataType.Date)]
-    [Required(ErrorMessage = "inserte la fecha en la que usted ah salido del vientre")]
+    [Required(ErrorMessage = "inserte la fecha ")]
     public DateTime FechaDeNacimiento { get; set; }
 
 

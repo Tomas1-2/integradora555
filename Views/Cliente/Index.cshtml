@@ -7,7 +7,7 @@
 <p>
     <a class="btn btn-primary" asp-action="Create">Crear nuevo</a>
 </p>
-<table class="table color">
+<table class="table color table-dark">
     <thead>
         <tr>
             <th>
@@ -42,7 +42,7 @@
             </td>
             <td>
                 <a class="btn btn-success " asp-action="Edit" asp-route-id="@item.clienteId">Editar</a> |
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.clienteId">Eliminar</a>
+                <a class="btn btn-danger" onclick="eliminarCliente(@item.clienteId);">Eliminar</a>
             </td>
         </tr>
 }

@@ -21,14 +21,21 @@ namespace integradora555.Controllers
         }
 
         // GET: Casa
-        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-              return _context.Casa != null ? 
-                          View(await _context.Casa.ToListAsync()) :
-                          Problem("Entity set 'integradora555Context.Casa'  is null.");
+            return _context.Casa != null ?
+                        View(await _context.Casa.ToListAsync()) :
+                        Problem("Entity set 'integradora555Context.Casa'  is null.");
         }
-       
+        [AllowAnonymous]
+        public async Task<IActionResult> indexanonimo()
+        {
+            var integradora555Context = _context.Casa.Where(a => a.alquilada == false && a.eliminada == false);
+            return View(await integradora555Context.ToListAsync());
+
+        }
+
+
         // GET: Casa/Create
         public IActionResult Create()
         {
@@ -42,7 +49,7 @@ namespace integradora555.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CasaId,NombreDeCasa,domicilio,NombreDueño,imagenDeCasa,alquilada,eliminada")] Casa casa, IFormFile imagenDeCasa)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 if (imagenDeCasa != null && imagenDeCasa.Length > 0)
                 {
@@ -56,13 +63,13 @@ namespace integradora555.Controllers
                     casa.imagenDeCasa = Casaimagen;
                 }
 
-                    _context.Add(casa);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                _context.Add(casa);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
             return View(casa);
         }
-        
+
 
         // GET: Casa/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -85,7 +92,7 @@ namespace integradora555.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CasaId,NombreDeCasa,domicilio,NombreDueño,imagenDeCasa,alquilada,eliminada")] Casa casa)
+        public async Task<IActionResult> Edit(int id, [Bind("CasaId,NombreDeCasa,domicilio,NombreDueño,alquilada,eliminada")] Casa casa, IFormFile imagenDeCasa)
         {
             if (id != casa.CasaId)
             {
@@ -96,6 +103,18 @@ namespace integradora555.Controllers
             {
                 try
                 {
+                    if (imagenDeCasa != null && imagenDeCasa.Length > 0)
+                    {
+                        byte[]? Casaimagen = null;
+                        using (var fs1 = imagenDeCasa.OpenReadStream())
+                        using (var ms1 = new MemoryStream())
+                        {
+                            fs1.CopyTo(ms1);
+                            Casaimagen = ms1.ToArray();
+                        }
+                        casa.imagenDeCasa = Casaimagen;
+                    }
+
                     _context.Update(casa);
                     await _context.SaveChangesAsync();
                 }
@@ -134,17 +153,22 @@ namespace integradora555.Controllers
         }
 
         // POST: Casa/Delete/5
-        
+
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var Casa = await _context.Casa.FindAsync(id);
-            if(Casa.alquilada == true){
+            if (Casa.alquilada == true)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            if (Casa.eliminada == true)
+            {
                 return RedirectToAction(nameof(Index));
             }
             if (Casa != null)
             {
                 var CasaAlquilada = (from a in _context.Alquiler where a.casaId == id select a).Count();
-                if(CasaAlquilada == 0)
+                if (CasaAlquilada == 0)
                 {
                     _context.Casa.Remove(Casa);
                     await _context.SaveChangesAsync();
@@ -155,6 +179,7 @@ namespace integradora555.Controllers
                     Casa.NombreDeCasa = Casa.NombreDeCasa + " (Eliminada)";
                     _context.Update(Casa);
                     await _context.SaveChangesAsync();
+
                 }
             }
 
@@ -163,7 +188,7 @@ namespace integradora555.Controllers
 
         private bool CasaExists(int id)
         {
-          return (_context.Casa?.Any(e => e.CasaId == id)).GetValueOrDefault();
+            return (_context.Casa?.Any(e => e.CasaId == id)).GetValueOrDefault();
         }
     }
 }

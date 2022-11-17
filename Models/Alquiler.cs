@@ -6,7 +6,7 @@ public class Alquiler
     [Key]
 
     public int AlquilerId{ get; set;}
-    [Display(Name ="fecha en la que usted rento la vivienda")]
+    [Display(Name ="fecha")]
     [DataType(DataType.Date)]
     public DateTime FechaDeAlquiler{ get; set;}
     [Display(Name = "cliente")]

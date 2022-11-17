@@ -9,9 +9,10 @@
 <p>
     <a class="btn btn-primary" asp-action="Create">Crear nuevo</a>
 </p>
-<table class="table color">
+<div class="container">
+<table class="table color table-dark">
     <thead>
-        <tr class="">
+        <tr >
             <th>
                 @Html.DisplayNameFor(model => model.FechaDevolucion)
             </th>
@@ -54,11 +55,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Casa.NombreDeCasa)
             </td>
-            <td>
+            @* <td>
                 <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.DevolucionId">Editar</a> |
                 <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.DevolucionId">Eliminar</a>
-            </td>
+            </td> *@
         </tr>
 }
     </tbody>
 </table>
+</div>

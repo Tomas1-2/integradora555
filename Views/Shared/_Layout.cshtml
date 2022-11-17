@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,41 +9,65 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/integradora555.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/sweetAlert2.min.css">
-     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/sweetAlert2.min.js"></script>
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">integradora555</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand colorinmo" asp-area="" asp-controller="Home" asp-action="Index">INMOBILIARIA</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">inicio</a>
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <ul class="navbar-nav flex-grow-1">
+                                
+                                @* <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">inicio</a>
+                                    </li> *@
+                                <li class="nav-item ">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Casa" asp-action="Index">Casas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Cliente"
+                                asp-action="Index">Clientes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Alquiler"
+                                asp-action="Index">Alquiler</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Devolucion"
+                                asp-action="Index">Devoluciones</a>
+                                </li>
+                                @* <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                    </li> *@
+                                    <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Logout">Cerrar perfil</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Casa" asp-action="Index">Casas</a>
-                        </li>
-                           <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cliente" asp-action="Index">Clientes</a>
-                        </li>
-                           <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Alquiler" asp-action="Index">Alquiler</a>
-                        </li>
-                           <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Devolucion" asp-action="Index">Devoluciones</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                            </ul>
+                        }
+                        else{
+                            <ul class="navbar-nav flex-grow-1">
+                                 <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Casa" asp-action="indexanonimo">Casas</a>
+                                </li>
+                                <li class="nav-item alado">
+                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Iniciar sesion</a>
+                    </li>
+                            </ul>
+                        }
+                    }
+
                 </div>
             </div>
         </nav>
@@ -53,11 +78,12 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer light bg-light text-muted">
         <div class="container">
-            &copy; 2022 - integradora555 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - INMOBILIARIA - TOMAS SABENA
         </div>
     </footer>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

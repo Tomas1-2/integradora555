@@ -3,9 +3,6 @@
 @{
     ViewData["Title"] = "Index";
 }
-<p>
-    <a class="btn btn-primary" asp-action="Create">Crear Nuevo</a>
-</p>
 <table class="table">
     <thead>
         <tr class="color">
@@ -24,10 +21,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.alquilada)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.eliminada)
-            </th>
-            <th></th>
+           
+         
         </tr>
     </thead>
     <tbody>
@@ -53,13 +48,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.alquilada)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.eliminada)
-            </td>
-            <td>
-                <a class="btn btn-success espacio" asp-action="Edit" asp-route-id="@item.CasaId">Editar</a>
-                <a class="btn btn-danger espacio" onclick="eliminarCasa(@item.CasaId);">Eliminar</a>
-            </td>
+            
+        
         </tr>
 }
     </tbody>
