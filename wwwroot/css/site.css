@@ -18,9 +18,8 @@ html {
 body {
   margin-bottom: 60px;
 
-  background-image: url(../css/imagenes/casas.jpg);
-  /* background-repeat: no-repeat !important; */
-  width: 100%;
+  background-image: url(../css/imagenes/celeste.gif);
+  
 }
 
 .centrar{
@@ -28,9 +27,7 @@ body {
   margin: auto;
   height: auto;
   position: relative;
-  
-
-}
+  }
 
 .color{
   color: var(--bs-white);
@@ -40,9 +37,9 @@ body {
 }
 
 .colorparacreates{
-  border: 2px solid rgb(26, 21, 19);
+  border: 2px solid rgb(0, 0, 0);
   border-radius: 2,2,2,2;
-  background-color: antiquewhite;
+  background-color: rgb(26, 25, 23);
   opacity: 0.85;
   box-sizing: border-box;
 }
@@ -59,7 +56,9 @@ body {
 }
 
 
-.carousel-item {
-  height: 100vh;
+.carousel{
+max-width: 100 vh;
+align-items: center;
 
 }
+

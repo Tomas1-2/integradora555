@@ -12,7 +12,7 @@ public class Cliente
     [Required(ErrorMessage = "inserte el nombre que le ah dado su madre")]
     public string Nombre { get; set; }
     [Display(Name ="Apellido")]
-     [RegularExpression(@"[A-Z]*$", ErrorMessage ="ESCRIBI EN MAYUSCULA Y SIN ESPACIO")]
+    [RegularExpression(@"[A-Z]*$", ErrorMessage ="ESCRIBI EN MAYUSCULA Y SIN ESPACIO")]
     [MaxLength(15,ErrorMessage ="flaco cambia el apellido porque tambien muy largo")]
     [Required(ErrorMessage = "inserte el apellido que ah obtenido de su padre")]
     public string Apellido { get; set; }
